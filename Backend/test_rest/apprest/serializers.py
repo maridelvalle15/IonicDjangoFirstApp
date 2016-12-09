@@ -17,4 +17,10 @@ class AutorSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username', 'password', 'saldo')
+
+
+class TransaccionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaccion
+        fields = ('hora', 'monto', 'origen', 'destino')

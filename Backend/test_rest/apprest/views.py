@@ -71,7 +71,6 @@ def post_user(request):
 
 @api_view(['GET'])
 def get_users(request):
-    print "called"
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     #r = {'is_claimed': 'True', 'rating': 3.5}
@@ -79,3 +78,29 @@ def get_users(request):
     #response = json.loads(r)
     response = serializer.data
     return Response(response, status=200)
+
+
+@api_view(['GET'])
+def get_user(request, id):
+    user = User.objects.get(username=id)
+    serializer = UserSerializer(user)
+    #r = {'is_claimed': 'True', 'rating': 3.5}
+    #r = json.dumps(r)
+    #response = json.loads(r)
+    response = serializer.data
+    return Response(response, status=200)
+
+
+@api_view(['PUT'])
+def update_user(request, id):
+    user = User.objects.get(username=id)
+    data = JSONParser().parse(request)
+    data['saldo'] = str(int(data['saldo']) + int(user.saldo))
+    print data
+    serializer = UserSerializer(user, data=data)
+    print serializer
+    if serializer.is_valid():
+        print "im valid"
+        serializer.save()
+        return JsonResponse(serializer.data)
+    return JsonResponse(serializer.errors, status=400)

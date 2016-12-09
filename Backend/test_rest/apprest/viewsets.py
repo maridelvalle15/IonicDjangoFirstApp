@@ -19,3 +19,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+
+class TransaccionViewSet(viewsets.ModelViewSet):
+
+    serializer_class = TransaccionSerializer
+    queryset = Transaccion.objects.all()
