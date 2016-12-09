@@ -1,0 +1,28 @@
+<ion-view view-title="User">
+  <ion-content>
+    <div class="list card">
+      <div class="item">
+        <h2>Credits: {{user.saldo}}</h2>
+        <p></p>
+      </div>
+       <h4> &nbsp;For security reasons, re-enter user data.</h4>
+      <div class="item item-body">
+        <form ng-submit="recargarSaldo()">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Username</span>
+              <input type="text" ng-model="saldoData.username">
+              <span class="input-label">Password</span>
+              <input type="text" ng-model="saldoData.password">
+              <span class="input-label">Amount</span>
+              <input type="text" ng-model="saldoData.saldo">
+            </label>
+            <label class="item">
+              <button class="button button-block button-positive" type="submit"><i class="icon ion-social-usd"></i> Buy credits</button>
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
