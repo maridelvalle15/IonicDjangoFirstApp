@@ -12,6 +12,7 @@ angular.module('starter.controllers', ['starter.services'])
   // Form data for the login modal
   $scope.loginData = {};
   $scope.saldoData = {};
+  $scope.transferData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -86,6 +87,34 @@ angular.module('starter.controllers', ['starter.services'])
 
   };
 
+  // Transferir de una cuenta a otra
+  $scope.transferir = function() {
+    console.log('Transfiriendo saldo', $scope.transferData);
+
+        // Posting data to php file
+        $http({
+          method  : 'PUT',
+          url     : 'http://localhost:8000/transfer',
+          data    : $scope.transferData, //forms user object
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          }
+         })
+          .success(function(data) {
+            console.log('SUCCESS');
+            $window.location.reload();
+            if (data.errors) {
+              // Showing errors.
+              $scope.errorName = data.errors.name;
+              $scope.errorUserName = data.errors.username;
+              $scope.errorEmail = data.errors.email;
+            } else {
+              $scope.message = data.message;
+            }
+          });
+
+  };
+
 })
 
 .controller('UsersCtrl', function($scope, $http) {
@@ -109,6 +138,9 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.user = User.get({userId: $stateParams.userId});
 })
 
+.controller('TransactionsCtrl', function($scope, Transaction) {
+    $scope.transactions = Transaction.query();
+})
 
 .controller('SessionsCtrl', function($scope, Session) {
     $scope.sessions = Session.query();

@@ -6,4 +6,8 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('User', function ($resource) {
     return $resource('http://localhost:8000/getuser/:userId/');
+})
+
+.factory('Transaction', function ($resource) {
+    return $resource('http://localhost:8000/transactions/');
 });

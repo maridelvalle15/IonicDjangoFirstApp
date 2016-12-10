@@ -104,3 +104,34 @@ def update_user(request, id):
         serializer.save()
         return JsonResponse(serializer.data)
     return JsonResponse(serializer.errors, status=400)
+
+
+@api_view(['POST', 'PUT'])
+def transfer(request):
+    data = JSONParser().parse(request)
+    print data
+    user_origin = User.objects.get(username=data['origin'])
+    user_destination = User.objects.get(username=data['destination'])
+    user_origin.saldo = str(int(user_origin.saldo) - int(data['amount']))
+    user_destination.saldo = str(int(user_destination.saldo) + int(data['amount']))
+    serializer = TransaccionSerializer(data=data)
+    print serializer
+    if serializer.is_valid():
+        print "im valid"
+        serializer.save()
+        user_origin.save()
+        user_destination.save()
+        return JsonResponse(serializer.data)
+    return JsonResponse(serializer.errors, status=400)
+
+
+@api_view(['GET'])
+def get_transactions(request):
+    transactions = Transaccion.objects.all()
+    serializer = TransaccionSerializer(transactions, many=True)
+    #r = {'is_claimed': 'True', 'rating': 3.5}
+    #r = json.dumps(r)
+    #response = json.loads(r)
+    response = serializer.data
+    print response
+    return Response(response, status=200)

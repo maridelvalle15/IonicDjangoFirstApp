@@ -23,4 +23,4 @@ class UserSerializer(serializers.ModelSerializer):
 class TransaccionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaccion
-        fields = ('hora', 'monto', 'origen', 'destino')
+        fields = ('hora', 'amount', 'origin', 'destination')

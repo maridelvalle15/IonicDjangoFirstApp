@@ -52,12 +52,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.transfer', {
+      url: '/transfer',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/transfer.html'
         }
+      }
+    })
+
+  .state('app.transactions', {
+      url: "/transactions",
+      views: {
+          'menuContent': {
+              templateUrl: "templates/transactions.html",
+              controller: 'TransactionsCtrl'
+          }
       }
     })
 
@@ -71,25 +81,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.sessions', {
-      url: "/sessions",
+    .state('app.welcome', {
+      url: '/welcome',
       views: {
-          'menuContent': {
-              templateUrl: "templates/sessions.html",
-              controller: 'SessionsCtrl'
-          }
-      }
-    })
-
-  .state('app.session', {
-    url: "/sessions/:sessionId",
-    views: {
         'menuContent': {
-          templateUrl: "templates/session.html",
-          controller: 'SessionCtrl'
+          templateUrl: 'templates/welcome.html'
+        }
       }
-    }
-});
+    });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/sessions');
+  $urlRouterProvider.otherwise('/app/welcome');
 });

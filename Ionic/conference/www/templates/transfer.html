@@ -1,0 +1,27 @@
+<ion-view view-title="Transfer">
+  <ion-content>
+    <div class="list card">
+      <div class="item">
+        <h2>Enter de origin, destination and amount of the transfer</h2>
+        <p></p>
+      </div>
+      <div class="item item-body">
+        <form ng-submit="transferir()">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Origin</span>
+              <input type="text" ng-model="transferData.origin">
+              <span class="input-label">Destination</span>
+              <input type="text" ng-model="transferData.destination">
+              <span class="input-label">Amount</span>
+              <input type="text" ng-model="transferData.amount">
+            </label>
+            <label class="item">
+              <button class="button button-block button-positive" type="submit"><i class="icon ion-social-usd"></i> Transfer</button>
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

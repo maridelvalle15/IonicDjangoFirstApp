@@ -23,7 +23,7 @@ class User(models.Model):
 
 
 class Transaccion(models.Model):
-    hora = models.DateField(default=datetime.datetime.now())
-    monto = models.CharField(max_length=30)
-    origen = models.CharField(max_length=30)
-    destino = models.CharField(max_length=30)
+    hora = models.DateTimeField(default=datetime.datetime.now())
+    amount = models.CharField(max_length=30, null=True, blank=True)
+    origin = models.CharField(max_length=30, null=True, blank=True)
+    destination = models.CharField(max_length=30, null=True, blank=True)
