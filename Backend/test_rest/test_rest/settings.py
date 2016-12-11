@@ -131,9 +131,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:8000',
-    '127.0.0.1:8000',
-    'localhost:8100',
-    '192.168.1.109:8100',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:8000',
+#     '127.0.0.1:8000',
+#     'localhost:8100',
+#     '192.168.1.109:8100',
+# )
+
+CORS_ORIGIN_ALLOW_ALL = True
