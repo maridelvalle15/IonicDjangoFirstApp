@@ -1,14 +1,15 @@
 <ion-view view-title="Transactions">
   <ion-content>
-  <br>
-  <br>
+    <br>
+    <br>
     <ion-list>
+      <ion-item><button class="button button-block button-positive" ng-click="reload()">Refresh</button></ion-item>
       <ion-item ng-repeat="transaction in transactions"
                 href="#/app/users/{{user.username}}">
                 <span><b>Origin:</b> {{transaction.origin}}</span><br>
                 <span><b>Destination:</b> {{transaction.destination}}</span><br>
                 <span><b>Amount:</b> {{transaction.amount}}</span><br>
-                <span><b>Time:</b> {{ transaction.hora | date: "MM/dd/yyyy 'at' h:mma"}} </span><br>
+                <span><b>Time:</b> {{ transaction.hora }} </span><br>
                 </ion-item>
     </ion-list>
   </ion-content>

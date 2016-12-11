@@ -15,6 +15,9 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.saldoData = {};
   $scope.transferData = {};
 
+  $rootScope.username = localStorage.getItem("username");
+  $rootScope.saldo = localStorage.getItem("saldo");
+
   // Create the register modal that we will use later
   $ionicModal.fromTemplateUrl('templates/register.html', {
     scope: $scope
@@ -114,8 +117,10 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.errorUserName = data.errors.username;
               $scope.errorEmail = data.errors.email;
             } else {
-              $rootScope.username = data['username'];
-              $rootScope.saldo = data['saldo'];
+              localStorage.setItem("username",data['username']);
+              localStorage.setItem("saldo",data['saldo']);
+              $rootScope.username = localStorage.getItem("username");
+              $rootScope.saldo = localStorage.getItem("saldo");
               alert('You have logged as ' + data['username'])
               $ionicHistory.nextViewOptions({
                 disableBack: true
@@ -131,7 +136,6 @@ angular.module('starter.controllers', ['starter.services'])
   // Recargar saldo
   $scope.recargarSaldo = function() {
     console.log('recargando saldo', $scope.saldoData);
-
         // heroku
         var url = 'http://tradeit-redes.herokuapp.com/updateuser/'+$rootScope.username
         // local
@@ -157,7 +161,8 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.errorEmail = data.errors.email;
               alert("Error during the operation")
             } else {
-              $rootScope.saldo = data['saldo'];
+              localStorage.saldo = data['saldo'];
+              $rootScope.saldo = localStorage.saldo
               $ionicHistory.nextViewOptions({
                 disableBack: true
               });
@@ -198,7 +203,8 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.errorUserName = data.errors.username;
               $scope.errorEmail = data.errors.email;
             } else {
-              $rootScope.saldo = data['amount'];
+              localStorage.saldo = data['amount'];
+              $rootScope.saldo = localStorage.saldo
               $ionicHistory.nextViewOptions({
                 disableBack: true
               });
@@ -210,12 +216,17 @@ angular.module('starter.controllers', ['starter.services'])
 
   };
 
+  // Reload
+  $scope.reload = function(){
+    $window.location.reload();
+  }
+
   // Recargar transacciones
-  $scope.transactions = function() {
+  $scope.getTransactions = function() {
     console.log('Transacciones');
 
         // heroku
-        var url = 'http://tradeit-redes.herokuapp.com/transacciones'
+        var url = 'http://tradeit-redes.herokuapp.com/transactions'
         // local
         //var url = 'http://localhost:8000/transacciones'
 
@@ -229,9 +240,9 @@ angular.module('starter.controllers', ['starter.services'])
          })
           .success(function(data) {
             console.log('SUCCESS');
-            console.log(data);
             $scope.transactions = [];
             for(var r in data) {
+              console.log("Encontre una")
               var transaction = data[r];
               $scope.transactions.push(transaction);
             }
@@ -243,6 +254,8 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.errorUserName = data.errors.username;
               $scope.errorEmail = data.errors.email;
             } else {
+              console.log($scope.transactions);
+              $state.go('app.transactions');
               $scope.message = data.message;
             }
           });
@@ -280,6 +293,7 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('TransactionsCtrl', function($scope, $http) {
+
     $scope.transactions = [];
 
     // heroku
