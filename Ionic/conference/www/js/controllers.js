@@ -54,9 +54,9 @@ angular.module('starter.controllers', ['starter.services'])
     console.log('Registering', $scope.registerData);
 
       // heroku
-      //var url = 'http://tradeit-redes.herokuapp.com/postuser/'
+      var url = 'http://tradeit-redes.herokuapp.com/postuser/'
       // local
-      var url = 'http://localhost:8000/postuser/'
+      //var url = 'http://localhost:8000/postuser/'
         // Posting data to php file
         $http({
           method  : 'POST',
@@ -87,9 +87,9 @@ angular.module('starter.controllers', ['starter.services'])
     console.log('Doing login', $scope.loginData);
 
         // heroku
-        //var url = 'http://tradeit-redes.herokuapp.com/postuser/'
+        var url = 'http://tradeit-redes.herokuapp.com/postuser/'
         // local
-        var url = 'http://localhost:8000/getuser/'+$scope.loginData['username']
+        //var url = 'http://localhost:8000/getuser/'+$scope.loginData['username']
         // Posting data to php file
         $http({
           method  : 'POST',
@@ -128,9 +128,9 @@ angular.module('starter.controllers', ['starter.services'])
     console.log('recargando saldo', $scope.saldoData);
 
         // heroku
-        //var url = 'http://tradeit-redes.herokuapp.com/updateuser/'+$scope.saldoData['username']
+        var url = 'http://tradeit-redes.herokuapp.com/updateuser/'+$scope.saldoData['username']
         // local
-        var url = 'http://localhost:8000/updateuser/'+$rootScope.username
+        //var url = 'http://localhost:8000/updateuser/'+$rootScope.username
 
         // Posting data to php file
         $http({
@@ -166,9 +166,9 @@ angular.module('starter.controllers', ['starter.services'])
     console.log('Transfiriendo saldo', $scope.transferData);
 
         // heroku
-        //var url = 'http://tradeit-redes.herokuapp.com/transfer'
+        var url = 'http://tradeit-redes.herokuapp.com/transfer'
         // local
-        var url = 'http://localhost:8000/transfer/'+$rootScope.username
+        //var url = 'http://localhost:8000/transfer/'+$rootScope.username
 
         // Posting data to php file
         $http({
@@ -206,9 +206,9 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.users = [];
 
     // heroku
-        //var url = 'http://tradeit-redes.herokuapp.com/getusers'
+        var url = 'http://tradeit-redes.herokuapp.com/getusers'
         // local
-        var url = 'http://localhost:8000/getusers'
+        //var url = 'http://localhost:8000/getusers'
 
     $http({
       method: 'GET',
