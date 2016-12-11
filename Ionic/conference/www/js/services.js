@@ -17,10 +17,11 @@ angular.module('starter.services', ['ngResource'])
     return $resource('http://localhost:8000/transactions/');
 });
 */
+/*
+******************************************
+************** HEROKU ********************
+*/
+
 .factory('User', function ($resource) {
     return $resource('http://tradeit-redes.herokuapp.com/getuser/:userId/');
 })
-
-.factory('Transaction', function ($resource) {
-    return $resource('http://tradeit-redes.herokuapp.com/transactions/');
-});
