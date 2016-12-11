@@ -61,6 +61,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+  .state('app.buycredits', {
+      url: '/buycredits',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/buycredits.html'
+        }
+      }
+    })
+
   .state('app.transactions', {
       url: "/transactions",
       views: {
@@ -81,6 +90,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+    .state('app.register', {
+      url: "/register",
+      views: {
+          'menuContent': {
+              templateUrl: "templates/register.html",
+              controller: 'RegisterCtrl'
+          }
+      }
+    })
+
+    .state('app.index', {
+      url: '/index',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/index.html'
+        }
+      }
+    })
+
     .state('app.welcome', {
       url: '/welcome',
       views: {
@@ -91,5 +119,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/welcome');
+  $urlRouterProvider.otherwise('/app/index');
 });
