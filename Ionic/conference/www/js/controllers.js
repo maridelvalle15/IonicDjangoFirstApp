@@ -90,7 +90,7 @@ angular.module('starter.controllers', ['starter.services'])
     console.log('Doing login', $scope.loginData);
 
         // heroku
-        var url = 'http://localhost:8000/getuser/'+$scope.loginData['username']
+        var url = 'http://tradeit-redes.herokuapp.com/getuser/'+$scope.loginData['username']
         // local
         //var url = 'http://localhost:8000/getuser/'+$scope.loginData['username']
         // Posting data to php file
