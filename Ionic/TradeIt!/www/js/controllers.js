@@ -76,7 +76,7 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.errorName = data.errors.name;
               $scope.errorUserName = data.errors.username;
               $scope.errorEmail = data.errors.email;
-              alert("An error occurred during the registration")
+              alert("An error occurred during the registration");
             } else {
               alert('Account registered successfully!')
               console.log('SUCCESS');
@@ -84,6 +84,9 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.modal_register.hide();
               $scope.message = data.message;
             }
+          })
+          .error(function(error){
+          alert("An error occurred during the registration");
           });
 
   };
