@@ -129,6 +129,9 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.modal_login.hide();
               $scope.message = data.message;
             }
+          })
+          .error(function(error){
+          alert("Error logging in");
           });
 
   };
@@ -159,7 +162,7 @@ angular.module('starter.controllers', ['starter.services'])
               $scope.errorName = data.errors.name;
               $scope.errorUserName = data.errors.username;
               $scope.errorEmail = data.errors.email;
-              alert("Error during the operation")
+              alert("Error during the operation");
             } else {
               localStorage.saldo = data['saldo'];
               $rootScope.saldo = localStorage.saldo
@@ -170,6 +173,9 @@ angular.module('starter.controllers', ['starter.services'])
               $state.go('app.buycredits');
               $scope.message = data.message;
             }
+          })
+          .error(function(error){
+            alert("Error during the operation");
           });
 
   };
@@ -197,7 +203,7 @@ angular.module('starter.controllers', ['starter.services'])
             console.log(data);
             if (data.errors) {
               console.log("ERROR")
-              alert("Error during the transaction")
+              alert("Error during the transaction");
               // Showing errors.
               $scope.errorName = data.errors.name;
               $scope.errorUserName = data.errors.username;
@@ -212,6 +218,9 @@ angular.module('starter.controllers', ['starter.services'])
               $state.go('app.transfer');
               $scope.message = data.message;
             }
+          })
+          .error(function(error){
+            alert("Error during the transaction");
           });
 
   };
@@ -228,7 +237,7 @@ angular.module('starter.controllers', ['starter.services'])
         // heroku
         var url = 'http://tradeit-redes.herokuapp.com/transactions'
         // local
-        //var url = 'http://localhost:8000/transacciones'
+        //var url = 'http://localhost:8000/transactions'
 
         // Posting data to php file
         $http({
@@ -248,7 +257,7 @@ angular.module('starter.controllers', ['starter.services'])
             }
             if (data.errors) {
               console.log("ERROR")
-              alert("Error loading transactions")
+              alert("Error loading transactions");
               // Showing errors.
               $scope.errorName = data.errors.name;
               $scope.errorUserName = data.errors.username;
@@ -258,6 +267,9 @@ angular.module('starter.controllers', ['starter.services'])
               $state.go('app.transactions');
               $scope.message = data.message;
             }
+          })
+          .error(function(error){
+            alert("Error loading transactions");
           });
 
   };
